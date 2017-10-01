@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">In_Class_03</string>
+    <string name="str_editText1">Name</string>
+    <string name="str_editEmail">Email</string>
+    <string name="str_CurrentMood">Your Current Mood:</string>
+    <string name="str_department">Department</string>
+    <string name="str_radioSIS">SIS</string>
+    <string name="str_radioCIS">CIS</string>
+    <string name="str_radioBIO">BIO</string>
+    <string name="str_buttonSubmit">Submit</string>
+    <string name="str_selectAvatar">Select your Avatar</string>
+</resources>

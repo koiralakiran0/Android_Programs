@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">InClass02</string>
+    <string name="text_Length1">Length 1</string>
+    <string name="input_length1">Enter Length</string>
+    <string name="text_length2">Length 2</string>
+    <string name="default_shapeText">Select a shape</string>
+    <string name="button_calculate">Calculate</string>
+    <string name="str_clearButton">Clear</string>
+</resources>

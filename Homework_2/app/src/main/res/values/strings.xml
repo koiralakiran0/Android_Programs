@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Homework_2</string>
+    <string name="str_btncreate">Create New</string>
+    <string name="str_btnEdit">Edit Contact</string>
+    <string name="str_btnFinish">Finish</string>
+    <string name="str_btnDisplay">Display Contact</string>
+    <string name="str_btnDelete">Delete Contact</string>
+    <string name="edit_firstHint">First</string>
+    <string name="str_editLast">Last</string>
+    <string name="str_edit_company">Company</string>
+    <string name="str_phoneHint">Phone</string>
+    <string name="str_editEmail">Email</string>
+    <string name="str_HintURL">URL</string>
+    <string name="str_hintAddress">Address</string>
+    <string name="str_hintBirthday">Birthday</string>
+    <string name="str_hintNickname">Nickname</string>
+    <string name="str_hintFacebook">Facebook Profile URL</string>
+    <string name="str_twitter">Twitter Profile URL</string>
+    <string name="str_editSkype">Skype</string>
+    <string name="str_Youtube">YouTube Channel</string>
+    <string name="str_buttonSave">Save</string>
+</resources>

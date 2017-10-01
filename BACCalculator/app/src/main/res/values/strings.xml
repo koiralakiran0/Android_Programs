@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BAC Calculator</string>
+    <string name="str_text_Weight">Weight (lbs)</string>
+    <string name="str_hint_edit_weight">Enter Weight</string>
+    <string name="str_txt_gender">Gender</string>
+    <string name="Str_button_save">Save</string>
+    <string name="Str_Radio1oz">1 oz</string>
+    <string name="str_radio_5oz">5 oz</string>
+    <string name="str_radio12oz">12 oz</string>
+    <string name="str_text_drink_size">Drink Size</string>
+    <string name="str_txt_alcoholpercent">Alcohol %</string>
+    <string name="str_text_percentage">0%</string>
+    <string name="str_button_add_drink">Add Drink</string>
+    <string name="str_button_reset">Reset</string>
+    <string name="str_def_BacLevel">BAC Level: 0.00</string>
+    <string name="str_text_your_status">Your Status</string>
+</resources>

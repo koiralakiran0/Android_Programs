@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">IN_CLASS4</string>
+    <string name="str_text_complexity">Select Complexity:</string>
+    <string name="str_text_progress">0 Times</string>
+    <string name="str_button_numThread">Generate Number Thread</string>
+    <string name="str_button_Async">Generate Number Async Task</string>
+</resources>

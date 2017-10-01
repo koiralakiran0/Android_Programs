@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kiran.inclass4.MainActivity">
+
+    <Button
+        android:id="@+id/button_Async"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="33dp"
+        android:text="@string/str_buttonAsync" />
+
+    <TextView
+        android:id="@+id/text_SelectPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="@string/str_selectPassword"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/text_resultPassword"
+        android:layout_alignStart="@+id/text_resultPassword" />
+
+    <TextView
+        android:id="@+id/text_passLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text_SelectPassword"
+        android:layout_alignStart="@+id/text_SelectPassword"
+        android:layout_below="@+id/text_SelectPassword"
+        android:layout_marginTop="89dp"
+        android:text="@string/str_passLength" />
+
+    <TextView
+        android:id="@+id/text_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/text_SelectPassword"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:text="@string/str_def_count"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <TextView
+        android:id="@+id/text_length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/text_passLength"
+        android:layout_alignEnd="@+id/text_count"
+        android:layout_alignRight="@+id/text_count" />
+
+    <SeekBar
+        android:id="@+id/seek_passwordcount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_SelectPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:max="9"
+        android:progress="0" />
+
+    <SeekBar
+        android:id="@+id/seekBar_length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_length"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:max="15"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/text_resultPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_thread"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="26dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:text="@string/str_defResultPassword" />
+
+    <Button
+        android:id="@+id/button_thread"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button_Async"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="58dp"
+        android:text="@string/str_buttonThread" />
+
+    <ProgressBar
+        android:id="@+id/progress_thread"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" />
+
+</RelativeLayout>
