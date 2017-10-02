@@ -17,8 +17,9 @@ public class Contacts {
     String facebook;
     String twitter;
     String youtube;
+    String skype;
 
-    public Contacts(String firstName, String lastName, String company, String phone, String email, String URL, String address, String birthday, String nickName, String facebook, String twitter, String youtube) {
+    public Contacts(String firstName, String lastName, String company, String phone, String email, String URL, String address, String birthday, String nickName, String facebook, String twitter, String youtube, String skype) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;
@@ -31,6 +32,7 @@ public class Contacts {
         this.facebook = facebook;
         this.twitter = twitter;
         this.youtube = youtube;
+        this.skype = skype;
     }
 
 
