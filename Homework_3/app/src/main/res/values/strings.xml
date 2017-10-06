@@ -5,4 +5,9 @@
     <string name="str_btnStart">Start Trivia</string>
     <string name="str_textReady">Trivia Ready</string>
     <string name="str_btnNext">Next</string>
+    <string name="str_btnQuit">Quit</string>
+    <string name="str_textViewStats">Trivia Stats</string>
+    <string name="str_textViewCorrect">Correct Answers</string>
+    <string name="str_defPercentage">0%</string>
+    <string name="str_btnTryAgain">Try Again</string>
 </resources>

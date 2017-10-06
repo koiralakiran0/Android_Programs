@@ -1,7 +1,10 @@
 package com.example.koira.homework_3;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Button;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,19 +23,34 @@ import java.util.StringTokenizer;
 public class GetAllQuestions extends AsyncTask<String, Void, ArrayList<Question>>{
 
     ArrayList<Question> questions;
+    ProgressDialog loading_questions;
+    Context context;
+    Button starting_trivia;
 
-    public GetAllQuestions(ArrayList<Question> questions){
+    public GetAllQuestions(ArrayList<Question> questions, Context context, Button starting_trivia){
         this.questions = questions;
+        this.context = context;
+        this.starting_trivia = starting_trivia;
     }
 
     @Override
     protected void onPreExecute() {
-        super.onPreExecute();
+        loading_questions = new ProgressDialog(context);
+        loading_questions.setCancelable(false);
+        loading_questions.setMessage("Loading Questions");
+        loading_questions.setProgress(0);
+        loading_questions.show();
+        starting_trivia.setClickable(false);
     }
 
     @Override
     protected void onPostExecute(ArrayList<Question> questions) {
-        super.onPostExecute(questions);
+        loading_questions.setMessage("Photo Loaded");
+        loading_questions.setProgress(100);
+        loading_questions.dismiss();
+        loading_questions.setProgress(0);
+
+        starting_trivia.setClickable(true);
     }
 
     @Override
@@ -49,10 +67,6 @@ public class GetAllQuestions extends AsyncTask<String, Void, ArrayList<Question>
                 questions.add(new Question(line));
             }
 
-<<<<<<< HEAD
-            
-=======
->>>>>>> 963bd1ded83b5ba33fd19882dc913e60322126d9
         } catch (MalformedURLException e){
             e.printStackTrace();
         } catch (IOException e){

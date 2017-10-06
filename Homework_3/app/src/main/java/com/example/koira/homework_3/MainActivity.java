@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    static String arrray_Key = "ARRAY_KEY";
     ArrayList<Question> questions = new ArrayList<>();
 
     @Override
@@ -40,13 +41,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Trivia.class);
+                intent.putExtra(arrray_Key, questions);
                 startActivity(intent);
             }
         });
 
         if (isConnected()){
             //INTERNET AVAILABLE LOAD FILE
-            new GetAllQuestions(questions).execute(url_question);
+            new GetAllQuestions(questions, MainActivity.this, button_Start).execute(url_question);
         }
         else{
             Toast.makeText(MainActivity.this, "INTERNET UNAVAILABLE", Toast.LENGTH_SHORT).show();
