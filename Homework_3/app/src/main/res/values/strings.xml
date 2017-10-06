@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Homework_3</string>
+    <string name="str_Welcome">Wecome to Trivia App</string>
+    <string name="str_btnExit">Exit</string>
+    <string name="str_btnStart">Start Trivia</string>
+    <string name="str_textReady">Trivia Ready</string>
+</resources>
