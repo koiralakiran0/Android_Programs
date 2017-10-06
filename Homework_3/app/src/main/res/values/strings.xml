@@ -4,4 +4,5 @@
     <string name="str_btnExit">Exit</string>
     <string name="str_btnStart">Start Trivia</string>
     <string name="str_textReady">Trivia Ready</string>
+    <string name="str_btnNext">Next</string>
 </resources>
