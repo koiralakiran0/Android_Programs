@@ -32,7 +32,7 @@ public class GetAllQuestions extends AsyncTask<String, Void, ArrayList<Question>
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
-            stringTokenizer = new StringTokenizer(reader.readLine());
+            
         } catch (MalformedURLException e){
             e.printStackTrace();
         } catch (IOException e){
