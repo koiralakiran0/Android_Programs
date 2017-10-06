@@ -1,6 +1,7 @@
 package com.example.koira.homework_3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -28,10 +29,23 @@ public class MainActivity extends AppCompatActivity {
         TextView text_ready = (TextView) findViewById(R.id.textView_Ready);
         text_ready.setVisibility(View.INVISIBLE);
 
+        button_Exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        button_Start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Trivia.class);
+                startActivity(intent);
+            }
+        });
 
         if (isConnected()){
             //INTERNET AVAILABLE LOAD FILE
-
             new GetAllQuestions(questions).execute(url_question);
         }
         else{
