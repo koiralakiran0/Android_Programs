@@ -60,7 +60,6 @@ public class GetAllQuestions extends AsyncTask<String, Void, ArrayList<Question>
             URL url = new URL(strings[0]);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            Log.d("demo", reader.readLine());
 
             String line;
             while ((line = reader.readLine()) != null){
