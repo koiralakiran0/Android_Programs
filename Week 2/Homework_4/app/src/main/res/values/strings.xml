@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Homework_4</string>
+    <string name="str_btnGo">Go</string>
+    <string name="str_editKeyword">Search Keyword</string>
+</resources>
