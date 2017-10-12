@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         searchBar = (EditText) findViewById(R.id.editText_searchBar);
         showImage = (ImageView) findViewById(R.id.imageView_LoadImage);
-        ImageView imageView_previous = (ImageView) findViewById(R.id.imageView_Previous);
-        ImageView imageView_next = (ImageView) findViewById(R.id.imageView_Next);
+        final ImageView imageView_previous = (ImageView) findViewById(R.id.imageView_Previous);
+        final ImageView imageView_next = (ImageView) findViewById(R.id.imageView_Next);
 
         imageView_previous.setVisibility(View.INVISIBLE);
         imageView_next.setVisibility(View.INVISIBLE);
@@ -62,7 +62,12 @@ public class MainActivity extends AppCompatActivity {
                                     photoIndex = 0; //set photoIndex back
 
                                     dialogInterface.dismiss();
-                                    new GetPicURLsAsync(image_urls, keywordArray[i], MainActivity.this).execute("http://dev.theappsdr.com/apis/photos/index.php?format=json");
+                                    new GetPicURLsAsync(image_urls, keywordArray[i], MainActivity.this).execute("http://dev.theappsdr.com/apis/photos/index.php?keyword=" + keywordArray[i] + "&format=json");
+                                    Log.d("demo", image_urls.size()+" sized");
+                                    if (image_urls.size() > 1){
+                                        imageView_previous.setVisibility(View.VISIBLE);
+                                        imageView_next.setVisibility(View.VISIBLE);
+                                    }
                                 }
                             });
                     AlertDialog alertDialog = builder.create();
@@ -72,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
 
         imageView_previous.setOnClickListener(new View.OnClickListener() {
             @Override

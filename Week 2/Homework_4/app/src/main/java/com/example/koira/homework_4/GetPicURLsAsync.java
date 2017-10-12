@@ -2,6 +2,7 @@ package com.example.koira.homework_4;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -40,11 +41,12 @@ class GetPicURLsAsync extends AsyncTask<String, Void, ArrayList<String> > {
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 String json = IOUtils.toString(connection.getInputStream(), "UTF8");
                 JSONObject root = new JSONObject(json);
-                JSONArray categories = root.getJSONArray("categories");
+                JSONArray categories = root.getJSONArray("urls");
 
                 if (categories != null) {
                     int len = categories.length();
                     for (int i=0;i<len;i++){
+                        Log.d("demo", categories.toString());
                         urls.add(categories.getString(i));
                     }
                 }
