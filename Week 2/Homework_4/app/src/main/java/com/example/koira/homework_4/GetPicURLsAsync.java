@@ -3,6 +3,8 @@ package com.example.koira.homework_4;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -22,13 +24,22 @@ import java.util.ArrayList;
 class GetPicURLsAsync extends AsyncTask<String, Void, ArrayList<String> > {
 
     private ArrayList<String> urls;
-    private String keyword;
     private Context context;
+    ImageView previous, next;
 
-    public GetPicURLsAsync(ArrayList<String> image_urls, String keyword, Context context) {
+    @Override
+    protected void onPostExecute(ArrayList<String> strings) {
+        if (urls.size() > 1){
+            previous.setVisibility(View.VISIBLE);
+            next.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public GetPicURLsAsync(ArrayList<String> image_urls, Context context, ImageView previous, ImageView next) {
         this.urls = image_urls;
-        this.keyword = keyword;
         this.context = context;
+        this.previous = previous;
+        this.next = next;
     }
 
     @Override
