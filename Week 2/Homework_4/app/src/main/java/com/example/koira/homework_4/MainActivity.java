@@ -1,3 +1,9 @@
+/**
+ * Assignment #: Homework 4
+ * File Name: MainActivity.java
+ * Group 1: Kiran Koirala
+ */
+
 package com.example.koira.homework_4;
 
 import android.app.AlertDialog;
@@ -12,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> keywords = new ArrayList<>();
     private ArrayList<String> image_urls = new ArrayList<>();
 
-    EditText searchBar;
+    TextView textView_keywords;
     ImageView showImage;
     private int photoIndex = 0;
 
@@ -30,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        searchBar = (EditText) findViewById(R.id.editText_searchBar);
+        textView_keywords = (TextView) findViewById(R.id.textview_keywords);
         showImage = (ImageView) findViewById(R.id.imageView_LoadImage);
         final ImageView imageView_previous = (ImageView) findViewById(R.id.imageView_Previous);
         final ImageView imageView_next = (ImageView) findViewById(R.id.imageView_Next);
@@ -57,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                             .setSingleChoiceItems(keywordArray,-1, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    searchBar.setText(keywordArray[i]);
+                                    textView_keywords.setText(keywordArray[i]);
                                     image_urls = new ArrayList<String>();//reset
                                     photoIndex = 0; //set photoIndex back
 

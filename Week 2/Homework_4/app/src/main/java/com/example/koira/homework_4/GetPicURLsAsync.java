@@ -1,3 +1,9 @@
+/**
+ * Assignment #: Homework 4
+ * File Name: GetPicURLsAsync.java
+ * Group 1: Kiran Koirala
+ */
+
 package com.example.koira.homework_4;
 
 import android.app.ProgressDialog;
@@ -24,7 +30,6 @@ import java.util.ArrayList;
  */
 
 class GetPicURLsAsync extends AsyncTask<String, Void, ArrayList<String> > {
-
     private ArrayList<String> urls;
     private Context context;
     ImageView previous, next,showImage;
@@ -34,7 +39,6 @@ class GetPicURLsAsync extends AsyncTask<String, Void, ArrayList<String> > {
     protected void onPreExecute() {
         loadURLS = new ProgressDialog(context);
         loadURLS.setCancelable(false);
-
         loadURLS.setMessage("Loading URLs ...");
         loadURLS.setProgress(0);
         loadURLS.show();
@@ -42,7 +46,6 @@ class GetPicURLsAsync extends AsyncTask<String, Void, ArrayList<String> > {
 
     @Override
     protected void onPostExecute(ArrayList<String> strings) {
-
         if (urls.size() == 0){
             previous.setVisibility(View.INVISIBLE);
             next.setVisibility(View.INVISIBLE);
@@ -59,12 +62,10 @@ class GetPicURLsAsync extends AsyncTask<String, Void, ArrayList<String> > {
             new GetImages(showImage, context).execute(urls.get(0));
         }
             //Log.d("demo", result.toString());
-            loadURLS.setMessage("Words Loaded!");
-            loadURLS.setProgress(100);
-            loadURLS.dismiss();
-            loadURLS.setProgress(0);
-
-
+        loadURLS.setMessage("URLs Loaded!");
+        loadURLS.setProgress(100);
+        loadURLS.dismiss();
+        loadURLS.setProgress(0);
     }
 
     public GetPicURLsAsync(ArrayList<String> image_urls, Context context, ImageView previous, ImageView next, ImageView showImage) {
@@ -106,7 +107,6 @@ class GetPicURLsAsync extends AsyncTask<String, Void, ArrayList<String> > {
                 connection.disconnect();
             }
         }
-
         return urls;
     }
 }
