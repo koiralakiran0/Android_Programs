@@ -1,5 +1,7 @@
 package com.example.koira.homework_4;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -17,9 +19,25 @@ import java.net.URL;
 class GetImages extends AsyncTask<String, Void, Void> {
     ImageView imageView;
     Bitmap bitmap = null;
+    ProgressDialog loading_images;
+    Context context;
 
-    public GetImages(ImageView showImage) {
+
+    @Override
+    protected void onPreExecute() {
+        loading_images = new ProgressDialog(context);
+        loading_images.setCancelable(false);
+
+        loading_images.setMessage("Loading Images ...");
+        loading_images.setProgress(0);
+        loading_images.show();
+    }
+
+
+
+    public GetImages(ImageView showImage, Context context) {
         this.imageView = showImage;
+        this.context = context;
     }
 
     @Override
@@ -47,7 +65,13 @@ class GetImages extends AsyncTask<String, Void, Void> {
 
     @Override
     protected void onPostExecute(Void voidThings) {
+
+
         if (bitmap != null && imageView != null) {
+            loading_images.setMessage("Photo Loaded");
+            loading_images.setProgress(100);
+            loading_images.dismiss();
+            loading_images.setProgress(0);
             imageView.setImageBitmap(bitmap);
         }
     }

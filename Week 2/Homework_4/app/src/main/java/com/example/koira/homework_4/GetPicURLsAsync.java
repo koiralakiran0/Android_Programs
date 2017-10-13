@@ -1,10 +1,12 @@
 package com.example.koira.homework_4;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -25,21 +27,52 @@ class GetPicURLsAsync extends AsyncTask<String, Void, ArrayList<String> > {
 
     private ArrayList<String> urls;
     private Context context;
-    ImageView previous, next;
+    ImageView previous, next,showImage;
+    ProgressDialog loadURLS;
+
+    @Override
+    protected void onPreExecute() {
+        loadURLS = new ProgressDialog(context);
+        loadURLS.setCancelable(false);
+
+        loadURLS.setMessage("Loading URLs ...");
+        loadURLS.setProgress(0);
+        loadURLS.show();
+    }
 
     @Override
     protected void onPostExecute(ArrayList<String> strings) {
+
+        if (urls.size() == 0){
+            previous.setVisibility(View.INVISIBLE);
+            next.setVisibility(View.INVISIBLE);
+            showImage.setImageDrawable(null);
+            Toast.makeText(context, "NO IMAGE ON THIS", Toast.LENGTH_SHORT).show();
+        }
         if (urls.size() > 1){
             previous.setVisibility(View.VISIBLE);
             next.setVisibility(View.VISIBLE);
+            new GetImages(showImage,context).execute(urls.get(0));
         }
+
+        if (urls.size() == 1){
+            new GetImages(showImage, context).execute(urls.get(0));
+        }
+            //Log.d("demo", result.toString());
+            loadURLS.setMessage("Words Loaded!");
+            loadURLS.setProgress(100);
+            loadURLS.dismiss();
+            loadURLS.setProgress(0);
+
+
     }
 
-    public GetPicURLsAsync(ArrayList<String> image_urls, Context context, ImageView previous, ImageView next) {
+    public GetPicURLsAsync(ArrayList<String> image_urls, Context context, ImageView previous, ImageView next, ImageView showImage) {
         this.urls = image_urls;
         this.context = context;
         this.previous = previous;
         this.next = next;
+        this.showImage = showImage;
     }
 
     @Override

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                                     photoIndex = 0; //set photoIndex back
 
                                     dialogInterface.dismiss();
-                                    new GetPicURLsAsync(image_urls, MainActivity.this, imageView_previous, imageView_next).execute("http://dev.theappsdr.com/apis/photos/index.php?keyword=" + keywordArray[i] + "&format=json");
+                                    new GetPicURLsAsync(image_urls, MainActivity.this, imageView_previous, imageView_next, showImage).execute("http://dev.theappsdr.com/apis/photos/index.php?keyword=" + keywordArray[i] + "&format=json");
                                 }
                             });
                     AlertDialog alertDialog = builder.create();
@@ -77,17 +77,31 @@ public class MainActivity extends AppCompatActivity {
         imageView_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (photoIndex == 0){
+                    photoIndex = image_urls.size() -1;
+                }else
+                    photoIndex--;
 
+                showImage(image_urls.get(photoIndex));
             }
         });
 
         imageView_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (photoIndex == image_urls.size() -1){
+                    photoIndex = 0;
+                }else
+                    photoIndex++;
 
+                showImage(image_urls.get(photoIndex));
             }
         });
 
+    }
+
+    private void showImage(String s) {
+        new GetImages(showImage, MainActivity.this).execute(s);
     }
 
     private boolean isConnected() {
