@@ -1,0 +1,57 @@
+//TOAST
+	Toast.makeText(MainActivity.this, "SOME MESSAGE", Toast.LENGTH_SHORT).show();
+
+//ALERTDIALOG
+	AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Choose a Keyword")
+                            .setSingleChoiceItems(keywordArray,-1, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+				}
+			});
+	AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
+//PROGRESSDIALOG
+	//START
+	ProgressDialog progressdialog;
+	progressdialog = new ProgressDialog(context);
+        progressdialog.setCancelable(false);
+
+        progressdialog.setMessage("Progressdialog message");
+        progressdialog.setProgress(0);
+        progressdialog.show();
+	//END
+	if (result.size() > 0) {
+		progressdialog.setMessage("LOADED MESSAGE");
+        	progressdialog.setProgress(100);
+        	progressdialog.dismiss();
+        	progressdialog.setProgress(0);
+	}
+//INTENTS
+	Intent i = new Intent(MainActivity.this, secondActivity.class); //change from MainActivity to secondActivity
+	//IMPLICIT
+	Intent i = new Intent(android.content.Intent.ACTION.VIEW, Uri.parse(“HTTP URL”));
+	Intent i = new Intent(android.content.Intent.ACTION.VIEW, Uri.parse(“geo: 37.82, -1.8”));
+	Intent i = new Intent(android.content.Intent.ACTION.CALL, Uri.parse(“tel:7046877777”);
+	//MANIFEST -- AndroidManifest.xml
+	<intent-filter>
+		<action android:name = “com.example.intentsdemo.intent.action.VIEW”/>
+		<category android:name = “android.intent.category.DEFAULT”/>
+	</intent-filter>
+//EXTRAS
+	intent.putExtra(KEY_IN_INTENT_ACTIVITY, "string for other activity")
+	intent.putExtra(AGE_KEY, age_num)
+	
+	Object obj = new Object(); //obj should extend serializable
+	intent.putExtra(USER_KEY, obj)
+	
+	getIntent().getExtras().getString(KEY_FROM_INTENT_ACTIVITY)
+	getIntent().getExtras().getDouble(AGE_KEY_FROM_INTENT_ACTIVITY)
+	getIntent().getExtras().getSerializable(USER_KEY_FROM_INTENT_ACTIVITY);
+//THREADS
+	Thread thread = new Thread(new DoWork(), "threadName"); //DoWork() implements Runnable
+	thread.start();
+//THREADPOOL
+	ExecutorService threadPool = Executors.newFixtedThreadPool(numThreads);
+	threadPool.execute( new DoWork() ); //DoWork() implements Runnable
