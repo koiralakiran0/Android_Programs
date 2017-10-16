@@ -10,22 +10,49 @@ https://rss.itunes.apple.com/api/v1/us/ios-apps/top-grossing/all/25/explicit.jso
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayList<Result> arrayList = new ArrayList<>();
+    static int SECOND_CODE = 100;
+    static String ARRAYLIST_CODE = "ARRAYLIST_CODE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String api = "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-grossing/all/25/explicit.json";
-        new JsonAsync(arrayList ,MainActivity.this).execute(api);
+        final String api = "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-grossing/all/25/explicit.json";
+
+
+        findViewById(R.id.button_click).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isConnected()) {
+                    new JsonAsync(arrayList, MainActivity.this).execute(api);
+                }
+                else
+                    Toast.makeText(MainActivity.this, "NO INTERNET", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        final String xml_api = "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-grossing/all/25/explicit.rss";
+        findViewById(R.id.button_xml).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isConnected()){
+                    new ResultParser.ResultSaxParser();
+                }
+            }
+        });
     }
 
     private boolean isConnected() {

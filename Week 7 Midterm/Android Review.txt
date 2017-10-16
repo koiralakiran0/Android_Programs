@@ -55,3 +55,9 @@
 //THREADPOOL
 	ExecutorService threadPool = Executors.newFixtedThreadPool(numThreads);
 	threadPool.execute( new DoWork() ); //DoWork() implements Runnable
+
+
+//URLS
+XML PARSERS: https://github.com/koiralakiran0/Android_Programs/blob/master/Week%206/Modue6_Preparations/app/src/main/java/com/example/koira/modue6_preparations/PersonsParser.java
+JSON ASYNC:  https://github.com/koiralakiran0/Android_Programs/blob/master/Week%206/InClass06/app/src/main/java/com/example/koira/inclass06/JSONAsync.java
+DYNAMIC LAYOUT VIEW: https://github.com/jelloh/ITCS-4180/blob/master/Week-4/Homework02/app/src/main/java/com/example/devansh/homework02/DisplayContacts.java

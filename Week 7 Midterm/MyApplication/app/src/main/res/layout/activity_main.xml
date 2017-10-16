@@ -6,4 +6,21 @@
     android:layout_height="match_parent"
     tools:context="com.example.koira.midtermpracticepiazza.MainActivity">
 
+    <Button
+        android:id="@+id/button_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button JSON"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="153dp" />
+
+    <Button
+        android:id="@+id/button_xml"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Button_XML"
+        app:layout_constraintTop_toBottomOf="@+id/button_click"
+        tools:layout_editor_absoluteX="110dp" />
+
 </android.support.constraint.ConstraintLayout>
