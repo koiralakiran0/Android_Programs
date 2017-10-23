@@ -44,11 +44,15 @@ public class SecondActivity extends AppCompatActivity {
                 currentLayout.setLayoutParams(currentLayoutParams);
                 currentLayout.setId(View.generateViewId());
                 currentLayout.setClickable(true);
-                currentLayout.setOnClickListener(this);
+                currentLayout.setOnClickListener((View.OnClickListener) this);
                 ImageView currentProfilePic = new ImageView(this);
                 currentProfilePic.setId(View.generateViewId());
             }
         }
+
+    }
+
+    public void onClick(View view){
 
             /*
         ConstraintLayout currentLayout = new ConstraintLayout(this);
