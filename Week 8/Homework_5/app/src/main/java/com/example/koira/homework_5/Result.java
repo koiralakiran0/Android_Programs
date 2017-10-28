@@ -64,4 +64,10 @@ public class Result implements Serializable{
     public void setLargeImage(String largeImage) {
         this.largeImage = largeImage;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "title='" + title;
+    }
 }

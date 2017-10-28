@@ -3,4 +3,5 @@
     <string name="str_btnclear">Clear</string>
     <string name="str_btnGo">Go</string>
     <string name="str_editSearch">Search.....</string>
+    <string name="str_summarytitle">Summary</string>
 </resources>

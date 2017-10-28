@@ -20,29 +20,24 @@ class ResultParser {
         Result result;
         StringBuilder innerXml;
         int height;
-        int smallestHeight;
-        int largestHeight;
+        int smallHeight;
+        int largeHeight;
 
         public static ArrayList<Result> parseResult(InputStream inputStream) throws IOException, SAXException {
-            // stream of XML is pushed to program
-            ResultSaxParser feedSaxParser = new ResultSaxParser();
-            Xml.parse(inputStream , Xml.Encoding.UTF_8 , feedSaxParser);
-            return feedSaxParser.results;
+            ResultSaxParser resultSaxParser = new ResultSaxParser();
+            Xml.parse(inputStream , Xml.Encoding.UTF_8 , resultSaxParser);
+            return resultSaxParser.results;
         }
 
-        public ResultSaxParser() {
-            super();
-        }
 
         @Override
         public void startDocument() throws SAXException {
             super.startDocument();
-
             results = new ArrayList<>();
             innerXml = new StringBuilder();
             height = 0;
-            smallestHeight = 0;
-            largestHeight = 0;
+            smallHeight = 0;
+            largeHeight = 0;
         }
 
         @Override
@@ -71,24 +66,42 @@ class ResultParser {
 
             if (localName.equals("entry")){
                 results.add(result);
-                largestHeight = 0;
-                smallestHeight = 0;
+                largeHeight = 0;
+                smallHeight = 0;
             } else if (localName.equals("title")){
-                result.setTitle(innerXml.toString().trim());
+                if (result != null) {
+                    result.setTitle(innerXml.toString());
+                }
             } else if (localName.equals("summary")){
-                result.setSummary(innerXml.toString().trim());
+                if (result != null)
+                    result.setSummary(innerXml.toString());
             } else if (localName.equals("releaseDate")){
-                result.setReleaseDate(innerXml.toString().trim());
+                if (result != null)
+                    result.setReleaseDate(innerXml.toString());
             } else if (localName.equals("updated")){
-                result.setUpdatedDate(innerXml.toString());
+                if (result != null)
+                    result.setUpdatedDate(innerXml.toString());
             } else if (localName.equals("image")){
-
+                if (result != null) {
+                    if (result.getSmallImage() == null) {
+                        result.setSmallImage(innerXml.toString());
+                        smallHeight = height;
+                        largeHeight = height;
+                    } else if (height < smallHeight) {
+                        result.setSmallImage(innerXml.toString());
+                    } else if (height > largeHeight) {
+                        result.setLargeImage(innerXml.toString());
+                    }
+                }
             }
+
+            innerXml.setLength(0);
         }
 
         @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
             super.characters(ch, start, length);
+            innerXml.append(ch, start, length);
         }
     }
 }
