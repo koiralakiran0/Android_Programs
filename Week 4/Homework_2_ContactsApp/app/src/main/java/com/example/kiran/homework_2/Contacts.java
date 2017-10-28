@@ -19,6 +19,12 @@ public class Contacts {
     String youtube;
     String skype;
 
+    public Contacts(String firstName,String lastName,String phone){
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.phone=phone;
+    }
+
     public Contacts(String firstName, String lastName, String company, String phone, String email, String URL, String address, String birthday, String nickName, String facebook, String twitter, String youtube, String skype) {
         this.firstName = firstName;
         this.lastName = lastName;
