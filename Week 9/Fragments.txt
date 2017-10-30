@@ -1,0 +1,80 @@
+Changing Colors
+
+Main Activity
+
+	radiogroup.setOnCheckedChangeListener{
+		Afragment f = (Afragment)getFragmentManager.findfragmentById();
+		if (checkId == R.id._____)
+			f.fragmentMethod(argument1);
+	}
+
+
+Afragment
+	public void changeColor(int argument1){
+		getActivity().findViewById(R.id._______).setMethod(argument1);
+		OR
+		getView().setMethod(Argument1);
+	}
+
+//finding stuff in Fragment
+	getActivity.findViewById(R.id.__fragmentviewname___);
+
+//Fragments sending data back to Activity
+	public interface OnFragmentTextChange {
+		void OnTextChanged(String );
+	}
+
+	OnFragmentTextChange mListener;
+
+	public void OnAttach(Activity activity){
+		super.onAttach(activity);
+	try{
+		mListener = (onFragmentTextChange)activity
+	} catch (ClassCastException e){
+		throw new ClassCastException(activity.toString() + "should implement OnFragmentTextChange");
+		}
+	}
+
+	//inside the fragment
+	button_onclick
+		mListener.onTextChanged(String to pass to main activity);
+
+	//MainActivity
+	implements OnFragmentTextChange
+
+		public void OnTextChanged(String text){
+			TextView tv = findViewById(____);
+			tv.setText(text);
+		}
+
+//Dynamically Adding Fragments
+	getFragmentManager().beginTransaction()
+		.add(R.id.container, new AFragment(), "tag_afragment")
+		.commit(); //
+
+//Manage Multiple Fragments
+	//FirstFragment OnActivityCreated
+
+	getActivity().findViewById(R.id.button).setonclicklistener
+		mListener.gotoNextFragment();
+
+	//MainActivity
+	getFragmentManager().beginTransaction()
+	.add(R.id.container, new FirstFragment(), "tagName").commit();
+
+	//interface Method BACKSTACK ATTACK
+	public void gotoNextFragment(){
+		getFragmentManager().beginTransaction()
+		.replace(R.id.container, new SecondFragment(), "second")
+		.addToBackStack(null)
+		.commit();
+	}
+	
+	//override OnBackPressed()
+	public void onBackPressed(){
+		if (getFragmentManager().getBackStackEntryCount() > 0){
+			getFragmentManager().popBackStack();
+		}else{
+			super.onBackPressed();
+		}
+	}
