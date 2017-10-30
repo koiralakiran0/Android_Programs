@@ -15,9 +15,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Fragment contact = (Fragment) new Contacts();
         getFragmentManager().beginTransaction()
-                .add(R.id.Container, contact , "contact_tag")
+                .add(R.id.Container, new Contacts() , "contact_tag")
                 .commit();
     }
 }
