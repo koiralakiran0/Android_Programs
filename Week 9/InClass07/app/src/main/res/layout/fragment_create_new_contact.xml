@@ -1,0 +1,110 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.koira.inclass07.CreateNewContact">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView_contactImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            app:srcCompat="@drawable/select_avatar" />
+
+        <EditText
+            android:id="@+id/editText_Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:ems="10"
+            android:hint="@string/str_hintName"
+            android:inputType="textPersonName"
+            android:layout_below="@+id/imageView_contactImage"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:id="@+id/editText_Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/str_hintEmail"
+            android:inputType="textPersonName"
+            android:layout_below="@+id/editText_Name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:id="@+id/editText_Phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/str_hintPhone"
+            android:inputType="textPersonName"
+            android:layout_below="@+id/editText_Email"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/textView_dptName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/editText_Phone"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="31dp"
+            android:text="@string/str_txtDepartment" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_dptName"
+            android:layout_alignStart="@+id/textView_dptName"
+            android:layout_below="@+id/textView_dptName"
+            android:layout_toLeftOf="@+id/imageView_contactImage"
+            android:layout_toStartOf="@+id/imageView_contactImage"
+            android:id="@+id/radioGroup_dep">
+
+            <RadioButton
+                android:id="@+id/radioButton_SIS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/str_radiobuttonSIS" />
+
+            <RadioButton
+                android:id="@+id/radioButton_CS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/str_radiobuttonCS" />
+
+            <RadioButton
+                android:id="@+id/radioButton_BIO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/str_radioButtonBIO" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/button_Submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toEndOf="@+id/radioGroup_dep"
+            android:text="@string/str_btnSubmit" />
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">InClass07</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_ChooseAvatar">Select the Avatar</string>
+    <string name="str_hintName">Name</string>
+    <string name="str_hintEmail">Email</string>
+    <string name="str_hintPhone">Phone</string>
+    <string name="str_txtDepartment">Department</string>
+    <string name="str_radiobuttonSIS">SIS</string>
+    <string name="str_radiobuttonCS">CS</string>
+    <string name="str_radioButtonBIO">BIO</string>
+    <string name="str_btnSubmit">Submit</string>
+</resources>
