@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     TokenInfo tokenInfo;
     final OkHttpClient client = new OkHttpClient();
-    final String TOKEN_CODE = "info";
+    final static String TOKEN_CODE = "info";
     EditText emailEditText;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        //LOGIN BUTTON
         findViewById(R.id.button_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //SIGNUP BUTTON
         findViewById(R.id.button_signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //LOGIN USING USERNAME AND PASSWORD
     public void loginUser(String username, String password){
         RequestBody formBody = new FormBody.Builder()
                 .add("email", username)

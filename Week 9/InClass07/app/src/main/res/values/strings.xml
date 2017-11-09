@@ -12,4 +12,5 @@
     <string name="str_radiobuttonCS">CS</string>
     <string name="str_radioButtonBIO">BIO</string>
     <string name="str_btnSubmit">Submit</string>
+    <string name="str_newContact">Create New Contact</string>
 </resources>

@@ -59,21 +59,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/editText_Phone"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="31dp"
-            android:text="@string/str_txtDepartment" />
+            android:text="@string/str_txtDepartment"
+            android:layout_below="@+id/editText_Phone" />
 
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/radioGroup_dep"
+            android:layout_alignTop="@+id/textView_dptName"
             android:layout_alignLeft="@+id/textView_dptName"
-            android:layout_alignStart="@+id/textView_dptName"
-            android:layout_below="@+id/textView_dptName"
-            android:layout_toLeftOf="@+id/imageView_contactImage"
-            android:layout_toStartOf="@+id/imageView_contactImage"
-            android:id="@+id/radioGroup_dep">
+            android:layout_alignStart="@+id/textView_dptName">
 
             <RadioButton
                 android:id="@+id/radioButton_SIS"

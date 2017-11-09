@@ -8,18 +8,31 @@ import java.io.Serializable;
 
 public class ThreadMessage implements Serializable{
 
+    String token;
     String user_fname;
     String user_lname;
     String user_id;
-    String title;
+    String user_email;
+    String user_role;
+
+    public ThreadMessage(String token,String user_fname, String user_lname, String user_id, String user_email, String user_role) {
+        this.token = token;
+        this.user_fname = user_fname;
+        this.user_lname = user_lname;
+        this.user_id = user_id;
+        this.user_email = user_email;
+        this.user_role = user_role;
+    }
 
     @Override
     public String toString() {
         return "ThreadMessage{" +
-                "user_first_name='" + user_fname + '\'' +
+                "token='" + token + '\'' +
+                ", user_fname='" + user_fname + '\'' +
                 ", user_lname='" + user_lname + '\'' +
                 ", user_id='" + user_id + '\'' +
-                ", title='" + title + '\'' +
+                ", user_email='" + user_email + '\'' +
+                ", user_role='" + user_role + '\'' +
                 '}';
     }
 }

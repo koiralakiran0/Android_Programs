@@ -36,24 +36,27 @@ public class SignUp_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_);
 
+        //SIGNUP BUTTON
         findViewById(R.id.button_signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 firstName_edittext = (EditText) findViewById(R.id.editText_firstname);
                 lastName = (EditText) findViewById(R.id.editText_lastName);
                 email = (EditText) findViewById(R.id.editText_email);
-                String textEmail = email.getText().toString();
                 password = (EditText) findViewById(R.id.editText_password);
                 password_repeat = (EditText) findViewById(R.id.editText_repeatPass);
 
-                if (password.getText().toString().equals(password_repeat.getText().toString()) && validateEmail(textEmail)){
-                    signUpUser(firstName_edittext.getText().toString(), lastName.getText().toString(), email.getText().toString(), password.getText().toString());
+                if (!password.getText().toString().equals(password_repeat.getText().toString())) {
+                    Toast.makeText(SignUp_Activity.this, "Password don't match", Toast.LENGTH_SHORT).show();
+                }else if (!validateEmail(email.getText().toString())){
+                    Toast.makeText(SignUp_Activity.this, "Incorrect Email", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(SignUp_Activity.this, "PUT VALID INPUT", Toast.LENGTH_SHORT).show();
+                    signUpUser(email.getText().toString(), password.getText().toString(), firstName_edittext.getText().toString(), lastName.getText().toString());
                 }
             }
         });
 
+        //CANCEL LETS YOU GO BACK TO MAIN ACTIVITY
         findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,12 +73,12 @@ public class SignUp_Activity extends AppCompatActivity {
         }
     }
 
-    public void signUpUser(String firstName, String lastName, String email, String password){
+    public void signUpUser(String email, String password, String fname, String lname){
         RequestBody formBody = new FormBody.Builder()
                 .add("email", email)
                 .add("password", password)
-                .add("fName", firstName)
-                .add("lName", lastName)
+                .add("fname", fname)
+                .add("lname", lname)
                 .build();
 
         Request request = new Request.Builder()
@@ -97,6 +100,8 @@ public class SignUp_Activity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                //String x = String.valueOf(response.isSuccessful());
+                //Log.d("demo", x);
                 if (response.isSuccessful()){
                     //Toast.makeText(MainActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
                     firstName_edittext.post(new Runnable() {
@@ -108,7 +113,7 @@ public class SignUp_Activity extends AppCompatActivity {
 
                     Gson gson = new Gson();
                     threadMessage = gson.fromJson(response.body().string(), ThreadMessage.class);
-
+                    //Log.d("demo", threadMessage.toString());
                     Intent intent = new Intent(SignUp_Activity.this, ActivityChatScreen.class);
                     intent.putExtra(SIGNUP_CODE, threadMessage);
                     startActivity(intent);
@@ -116,7 +121,7 @@ public class SignUp_Activity extends AppCompatActivity {
                     firstName_edittext.post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(SignUp_Activity.this, "User Not Created", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp_Activity.this, "SIGNUP FAILED", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

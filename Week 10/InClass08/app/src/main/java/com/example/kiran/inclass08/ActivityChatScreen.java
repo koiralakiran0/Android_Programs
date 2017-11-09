@@ -9,26 +9,30 @@ import com.google.gson.Gson;
 import java.io.IOException;
 
 import okhttp3.Call;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Callback;
 import okhttp3.Response;
 
 public class ActivityChatScreen extends AppCompatActivity {
 
+    TokenInfo tokenInfo;
+    private final OkHttpClient client = new OkHttpClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_screen);
 
         if (getIntent()!= null && getIntent().getExtras() != null){
-
+            tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
+            getTheadMessages();
         }
     }
 
     public void getTheadMessages(){
         Request request = new Request.Builder()
                 .url("http://ec2-54-164-74-55.compute-1.amazonaws.com/api/thread")
-                .header("Authorization", "BEARER " + tokenInfo.token)
+                .header("Authorization", "BEARER " + tokenInfo.getToken())
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -54,5 +58,4 @@ public class ActivityChatScreen extends AppCompatActivity {
         });
 
     }
-
 }
