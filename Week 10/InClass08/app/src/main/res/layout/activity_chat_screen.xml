@@ -34,7 +34,7 @@
         android:maxLength="120" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_logout"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
@@ -50,8 +50,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/imageView"
-        android:layout_toStartOf="@+id/imageView"
+        android:layout_toLeftOf="@+id/imageView_logout"
+        android:layout_toStartOf="@+id/imageView_logout"
         android:ems="10"
         android:hint="@string/str_addnewthread"
         android:inputType="textPersonName" />
@@ -62,19 +62,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/imageView_logout"
         android:text="@string/str_currThreads"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_add"
-        android:layout_toEndOf="@+id/edit_newThread"
+        android:layout_alignLeft="@+id/imageView_logout"
+        android:layout_alignStart="@+id/imageView_logout"
         android:layout_alignTop="@+id/edit_newThread"
-        android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView" />
+        android:layout_toEndOf="@+id/edit_newThread"
+        app:srcCompat="@drawable/ic_add" />
 
 
 </RelativeLayout>

@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 
 public class ThreadMessageResponse {
-    private ArrayList<ThreadMessage> threads;
+    private ArrayList<MessageThread> threads;
 
-    public ArrayList<ThreadMessage> getThreads() {
+    public ArrayList<MessageThread> getThreads() {
         return threads;
     }
 }

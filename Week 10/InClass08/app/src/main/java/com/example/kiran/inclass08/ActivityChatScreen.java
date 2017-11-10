@@ -1,9 +1,9 @@
 package com.example.kiran.inclass08;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -22,6 +22,7 @@ public class ActivityChatScreen extends AppCompatActivity {
     TokenInfo tokenInfo;
     private final OkHttpClient client = new OkHttpClient();
     ListView listView;
+    final ArrayAdapter<MessageThread> adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,14 @@ public class ActivityChatScreen extends AppCompatActivity {
         if (getIntent()!= null && getIntent().getExtras() != null){
             tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
             getTheadMessages();
+
+            findViewById(R.id.imageView_logout).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    adapter.add(new MessageThread(tokenInfo.getUser_fname(), tokenInfo.getUser_lname(),
+                            tokenInfo.getUser_email(), tokenInfo.get));
+                }
+            });
         }
     }
 
@@ -51,12 +60,12 @@ public class ActivityChatScreen extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if(response.isSuccessful()){
-                    //Log.d("demo", "onResponse: " + response.body().string());
 
                     Gson gson = new Gson();
                     ThreadMessageResponse threadMessageResponse = gson.fromJson(response.body().string(), ThreadMessageResponse.class);
-                    final ArrayAdapter<ThreadMessage> adapter = new ArrayAdapter<ThreadMessage>(ActivityChatScreen.this, android.R.layout.simple_list_item_1,
-                           android.R.id.text1, threadMessageResponse.getThreads() );
+                    adapter = new ArrayAdapter<MessageThread>( ActivityChatScreen.this,
+                            android.R.layout.simple_list_item_1, android.R.id.text1, threadMessageResponse.getThreads() );
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

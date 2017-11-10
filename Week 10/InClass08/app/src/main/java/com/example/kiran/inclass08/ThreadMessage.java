@@ -26,6 +26,6 @@ public class ThreadMessage implements Serializable{
 
     @Override
     public String toString() {
-        return user_fname + " " + user_lname;
+        return user_id;
     }
 }
