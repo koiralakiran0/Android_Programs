@@ -26,13 +26,6 @@ public class ThreadMessage implements Serializable{
 
     @Override
     public String toString() {
-        return "ThreadMessage{" +
-                "token='" + token + '\'' +
-                ", user_fname='" + user_fname + '\'' +
-                ", user_lname='" + user_lname + '\'' +
-                ", user_id='" + user_id + '\'' +
-                ", user_email='" + user_email + '\'' +
-                ", user_role='" + user_role + '\'' +
-                '}';
+        return user_fname + " " + user_lname;
     }
 }

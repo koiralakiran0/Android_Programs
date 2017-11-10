@@ -10,4 +10,7 @@
     <string name="str_choosepassword">Choose Password</string>
     <string name="str_repeatPassword">Repeat Password</string>
     <string name="str_btnCancel">Cancel</string>
+    <string name="str_addnewthread">Add New Thread</string>
+    <string name="str_currThreads">Current Threads</string>
+    <string name="str_defName">Bob Marley</string>
 </resources>

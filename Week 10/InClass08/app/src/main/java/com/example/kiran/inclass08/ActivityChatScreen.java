@@ -1,8 +1,11 @@
 package com.example.kiran.inclass08;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 
@@ -18,10 +21,14 @@ public class ActivityChatScreen extends AppCompatActivity {
 
     TokenInfo tokenInfo;
     private final OkHttpClient client = new OkHttpClient();
+    ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_screen);
+
+        listView = (ListView) findViewById(R.id.listView_container);
 
         if (getIntent()!= null && getIntent().getExtras() != null){
             tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
@@ -48,8 +55,16 @@ public class ActivityChatScreen extends AppCompatActivity {
 
                     Gson gson = new Gson();
                     ThreadMessageResponse threadMessageResponse = gson.fromJson(response.body().string(), ThreadMessageResponse.class);
-                    Log.d("demo", "onResponse: " + threadMessageResponse.threads.toString());
+                    final ArrayAdapter<ThreadMessage> adapter = new ArrayAdapter<ThreadMessage>(ActivityChatScreen.this, android.R.layout.simple_list_item_1,
+                           android.R.id.text1, threadMessageResponse.getThreads() );
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            listView.setAdapter(adapter);
+                        }
+                    });
 
+                    //Log.d("demo", "onResponse: " + threadMessageResponse.getThreads().toString());
 
                 } else{
                     Log.d("demo", "onResponse: " + response.body().string());
