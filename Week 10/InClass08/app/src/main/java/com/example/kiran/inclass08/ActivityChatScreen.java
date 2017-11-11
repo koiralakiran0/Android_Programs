@@ -22,7 +22,7 @@ public class ActivityChatScreen extends AppCompatActivity {
     TokenInfo tokenInfo;
     private final OkHttpClient client = new OkHttpClient();
     ListView listView;
-    final ArrayAdapter<MessageThread> adapter = null;
+    ArrayAdapter<MessageThread> adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +32,20 @@ public class ActivityChatScreen extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_container);
 
         if (getIntent()!= null && getIntent().getExtras() != null){
-            tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
-            getTheadMessages();
-
+            if (getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE) != null) {
+                tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
+                getTheadMessages();
+            } else if (getIntent().getExtras().getSerializable(SignUp_Activity.SIGNUP_CODE) != null){
+                tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(SignUp_Activity.SIGNUP_CODE);
+            }
+/*
             findViewById(R.id.imageView_logout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     adapter.add(new MessageThread(tokenInfo.getUser_fname(), tokenInfo.getUser_lname(),
                             tokenInfo.getUser_email(), tokenInfo.get));
                 }
-            });
+            });*/
         }
     }
 

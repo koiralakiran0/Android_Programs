@@ -11,8 +11,11 @@ import java.io.Serializable;
 
 public class Profile implements Serializable{
 
-    String name;
-    String email;
+    private String name;
+    private String email;
+    private String department;
+    private String avatar;
+    private String mood;
 
     public String getName() {
         return name;
@@ -54,9 +57,6 @@ public class Profile implements Serializable{
         this.mood = mood;
     }
 
-    String department;
-    String avatar;
-    String mood;
 
     public Profile(String name, String email, String department, String avatar, String mood) {
         this.name = name;
