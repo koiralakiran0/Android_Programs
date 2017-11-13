@@ -1,3 +1,9 @@
+/*
+In Class 08
+Name: Kiran Koirala
+Group 1
+ */
+
 package com.example.kiran.inclass08;
 
 import android.content.Intent;
@@ -21,6 +27,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class SignUp_Activity extends AppCompatActivity {
+    final static String CODE_TOKEN = "signupInfo";
     EditText firstName_edittext;
     EditText lastName;
     EditText email;
@@ -116,6 +123,7 @@ public class SignUp_Activity extends AppCompatActivity {
                     //Log.d("demo", threadMessage.toString());
                     Intent intent = new Intent(SignUp_Activity.this, ActivityChatScreen.class);
                     intent.putExtra(SIGNUP_CODE, threadMessage);
+                    //intent.putExtra("class", "signupactivity");
                     startActivity(intent);
                 } else{
                     firstName_edittext.post(new Runnable() {

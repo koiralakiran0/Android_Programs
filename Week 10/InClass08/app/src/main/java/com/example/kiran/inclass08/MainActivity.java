@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(MainActivity.this, ActivityChatScreen.class);
                     intent.putExtra(TOKEN_CODE, tokenInfo);
+                    intent.putExtra("class", "mainactivity");
                     startActivity(intent);
                 } else{
                     emailEditText.post(new Runnable() {

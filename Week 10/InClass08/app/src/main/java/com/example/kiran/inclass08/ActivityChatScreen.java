@@ -1,3 +1,9 @@
+/*
+In Class 08
+Name: Kiran Koirala
+Group 1
+ */
+
 package com.example.kiran.inclass08;
 
 import android.support.v7.app.AppCompatActivity;
@@ -5,11 +11,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -22,7 +31,7 @@ public class ActivityChatScreen extends AppCompatActivity {
     TokenInfo tokenInfo;
     private final OkHttpClient client = new OkHttpClient();
     ListView listView;
-    final ArrayAdapter<MessageThread> adapter = null;
+    ArrayAdapter<MessageThread> adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +41,23 @@ public class ActivityChatScreen extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_container);
 
         if (getIntent()!= null && getIntent().getExtras() != null){
-            tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
-            getTheadMessages();
+            if (getIntent().getExtras().getString("class").equals("mainactivity")) {
+                tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
+                getTheadMessages();
+            } else if (getIntent().getExtras().getString("class").equals("signupactivity")){
+                tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(SignUp_Activity.CODE_TOKEN);
+                getTheadMessages();
+            }
 
+            /*
+            EditText editText = (EditText)findViewById(R.id.edit_newThread);
+            final Date currentTime = Calendar.getInstance().getTime();
             findViewById(R.id.imageView_logout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    adapter.add(new MessageThread(tokenInfo.getUser_fname(), tokenInfo.getUser_lname(),
-                            tokenInfo.getUser_email(), tokenInfo.get));
+                    adapter.add(new MessageThread(tokenInfo.getUser_fname(), tokenInfo.getUser_lname(), tokenInfo.getUser_id(), "112","title", currentTime.toString()));
                 }
-            });
+            });*/
         }
     }
 
