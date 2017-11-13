@@ -41,6 +41,7 @@ public class ActivityChatScreen extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_container);
 
         if (getIntent()!= null && getIntent().getExtras() != null){
+<<<<<<< HEAD
             if (getIntent().getExtras().getString("class").equals("mainactivity")) {
                 tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
                 getTheadMessages();
@@ -52,6 +53,15 @@ public class ActivityChatScreen extends AppCompatActivity {
             /*
             EditText editText = (EditText)findViewById(R.id.edit_newThread);
             final Date currentTime = Calendar.getInstance().getTime();
+=======
+            if (getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE) != null) {
+                tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
+                getTheadMessages();
+            } else if (getIntent().getExtras().getSerializable(SignUp_Activity.SIGNUP_CODE) != null){
+                tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(SignUp_Activity.SIGNUP_CODE);
+            }
+/*
+>>>>>>> 48d05d8522d9c2446492c6472bcf88c9db7f9ee0
             findViewById(R.id.imageView_logout).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

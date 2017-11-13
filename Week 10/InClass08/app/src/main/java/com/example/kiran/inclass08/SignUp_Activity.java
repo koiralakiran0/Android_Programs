@@ -36,7 +36,7 @@ public class SignUp_Activity extends AppCompatActivity {
 
     ThreadMessage threadMessage;
     final OkHttpClient client = new OkHttpClient();
-    final String SIGNUP_CODE = "SIGNUP";
+    final static String SIGNUP_CODE = "SIGNUP";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +71,8 @@ public class SignUp_Activity extends AppCompatActivity {
             }
         });
     }
+
+
 
     boolean validateEmail(String email){
         if (email == null) {
