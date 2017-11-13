@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     final OkHttpClient client = new OkHttpClient();
     final static String TOKEN_CODE = "info";
     EditText emailEditText;
+    EditText passwordEditText;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 emailEditText = (EditText) findViewById(R.id.editText_email);
                 String email = emailEditText.getText().toString();
-                EditText passwordEditText = (EditText) findViewById(R.id.editText_password);
+                passwordEditText= (EditText) findViewById(R.id.editText_password);
                 String password = passwordEditText.getText().toString();
 
                 loginUser(email, password);
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, ActivityChatScreen.class);
                     intent.putExtra(TOKEN_CODE, tokenInfo);
                     startActivity(intent);
+
                 } else{
                     emailEditText.post(new Runnable() {
                         @Override
@@ -121,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void clearContent() {
+        emailEditText.setText(null);
+        passwordEditText.setText(null);
+    }
 
 
 }

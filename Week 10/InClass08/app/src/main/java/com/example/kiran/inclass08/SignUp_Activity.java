@@ -1,3 +1,9 @@
+/*
+In Class 08
+Name: Kiran Koirala
+Group 1
+ */
+
 package com.example.kiran.inclass08;
 
 import android.content.Intent;
@@ -22,13 +28,13 @@ import okhttp3.Response;
 
 public class SignUp_Activity extends AppCompatActivity {
     private EditText firstName_edittext;
-    private EditText lastName;
-    private EditText email;
-    private EditText password;
+    private EditText edit_lastName;
+    private EditText edit_email;
+    private EditText edit_password;
     private EditText password_repeat;
 
-    String sEmail = email.getText().toString();
-    String sPassword = password.getText().toString();
+    String sEmail = "";
+    String sPassword = "";
 
     TokenInfo tokenInfo;
     final OkHttpClient client = new OkHttpClient();
@@ -40,21 +46,30 @@ public class SignUp_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_);
 
         firstName_edittext = (EditText) findViewById(R.id.editText_firstname);
-        lastName = (EditText) findViewById(R.id.editText_lastName);
-        email = (EditText) findViewById(R.id.editText_email);
-        password = (EditText) findViewById(R.id.editText_password);
+        edit_email = (EditText) findViewById(R.id.editText_email);
+        edit_password = (EditText) findViewById(R.id.editText_password);
+        edit_lastName = (EditText) findViewById(R.id.editText_lastName);
         password_repeat = (EditText) findViewById(R.id.editText_repeatPass);
+
 
         //SIGNUP BUTTON
         findViewById(R.id.button_signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!password.getText().toString().equals(password_repeat.getText().toString())) {
+                String repeat = password_repeat.getText().toString();
+                //Log.d("demo", repeat);
+
+                sEmail = edit_email.getText().toString();
+                Log.d("demo", "email" + sEmail);
+                sPassword = edit_password.getText().toString();
+                Log.d("demo", "passwrod" + sPassword);
+
+                if (!sPassword.equals(repeat)) {
                     Toast.makeText(SignUp_Activity.this, "Password don't match", Toast.LENGTH_SHORT).show();
-                }else if (!validateEmail(email.getText().toString())){
+                }else if (!validateEmail(sEmail)){
                     Toast.makeText(SignUp_Activity.this, "Incorrect Email", Toast.LENGTH_SHORT).show();
                 }else {
-                    signUpUser(email.getText().toString(), password.getText().toString(), firstName_edittext.getText().toString(), lastName.getText().toString());
+                    signUpUser(sEmail, sPassword, firstName_edittext.getText().toString(), edit_lastName.getText().toString());
                 }
             }
         });
@@ -78,7 +93,7 @@ public class SignUp_Activity extends AppCompatActivity {
         }
     }
 
-    public void signUpUser(final String email, final String password, String fname, String lname){
+    public void signUpUser(String email, String password, String fname, String lname){
         RequestBody formBody = new FormBody.Builder()
                 .add("email", email)
                 .add("password", password)
@@ -103,8 +118,6 @@ public class SignUp_Activity extends AppCompatActivity {
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                //String x = String.valueOf(response.isSuccessful());
-                //Log.d("demo", x);
                 if (response.isSuccessful()){
                     //Toast.makeText(MainActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
                     firstName_edittext.post(new Runnable() {
@@ -169,9 +182,8 @@ public class SignUp_Activity extends AppCompatActivity {
                     Gson gson = new Gson();
                     tokenInfo = gson.fromJson(response.body().string(), TokenInfo.class);
 
-                    Intent intent = new Intent(SignUp_Activity.this, ActivityChatScreen.class);
-                    intent.putExtra(TOKEN_CODE, tokenInfo);
-                    startActivity(intent);
+                    Log.d("demo ", tokenInfo.toString());
+                    startActivityChatScreen();
                 } else{
                     firstName_edittext.post(new Runnable() {
                         @Override
@@ -182,6 +194,14 @@ public class SignUp_Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void startActivityChatScreen() {
+        Intent intent = new Intent(SignUp_Activity.this, ActivityChatScreen.class);
+        intent.putExtra(TOKEN_CODE, tokenInfo);
+        //intent.putExtra("class", "signupactivity");
+        startActivity(intent);
+        finish();
     }
 
 }

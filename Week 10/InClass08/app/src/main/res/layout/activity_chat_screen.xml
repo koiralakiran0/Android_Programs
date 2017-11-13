@@ -8,14 +8,12 @@
     android:id="@+id/relativeLayout">
 
     <TextView
-        android:id="@+id/Name"
+        android:id="@+id/textview_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView_currentThreads"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/textView_currentThreads"
         android:text="@string/str_defName"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
