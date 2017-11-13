@@ -65,6 +65,8 @@ public class SignUp_Activity extends AppCompatActivity {
         });
     }
 
+
+
     boolean validateEmail(String email){
         if (email == null) {
             return false;
