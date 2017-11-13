@@ -35,8 +35,6 @@ public class ActivityChatScreen extends AppCompatActivity {
             if (getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE) != null) {
                 tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(MainActivity.TOKEN_CODE);
                 getTheadMessages();
-            } else if (getIntent().getExtras().getSerializable(SignUp_Activity.SIGNUP_CODE) != null){
-                tokenInfo = (TokenInfo) getIntent().getExtras().getSerializable(SignUp_Activity.SIGNUP_CODE);
             }
 /*
             findViewById(R.id.imageView_logout).setOnClickListener(new View.OnClickListener() {

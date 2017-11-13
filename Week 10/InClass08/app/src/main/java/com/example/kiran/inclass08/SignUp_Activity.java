@@ -21,31 +21,34 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class SignUp_Activity extends AppCompatActivity {
-    EditText firstName_edittext;
-    EditText lastName;
-    EditText email;
-    EditText password;
-    EditText password_repeat;
+    private EditText firstName_edittext;
+    private EditText lastName;
+    private EditText email;
+    private EditText password;
+    private EditText password_repeat;
 
-    ThreadMessage threadMessage;
+    String sEmail = email.getText().toString();
+    String sPassword = password.getText().toString();
+
+    TokenInfo tokenInfo;
     final OkHttpClient client = new OkHttpClient();
-    final static String SIGNUP_CODE = "SIGNUP";
+    final static String TOKEN_CODE = "info";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_);
 
+        firstName_edittext = (EditText) findViewById(R.id.editText_firstname);
+        lastName = (EditText) findViewById(R.id.editText_lastName);
+        email = (EditText) findViewById(R.id.editText_email);
+        password = (EditText) findViewById(R.id.editText_password);
+        password_repeat = (EditText) findViewById(R.id.editText_repeatPass);
+
         //SIGNUP BUTTON
         findViewById(R.id.button_signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firstName_edittext = (EditText) findViewById(R.id.editText_firstname);
-                lastName = (EditText) findViewById(R.id.editText_lastName);
-                email = (EditText) findViewById(R.id.editText_email);
-                password = (EditText) findViewById(R.id.editText_password);
-                password_repeat = (EditText) findViewById(R.id.editText_repeatPass);
-
                 if (!password.getText().toString().equals(password_repeat.getText().toString())) {
                     Toast.makeText(SignUp_Activity.this, "Password don't match", Toast.LENGTH_SHORT).show();
                 }else if (!validateEmail(email.getText().toString())){
@@ -75,7 +78,7 @@ public class SignUp_Activity extends AppCompatActivity {
         }
     }
 
-    public void signUpUser(String email, String password, String fname, String lname){
+    public void signUpUser(final String email, final String password, String fname, String lname){
         RequestBody formBody = new FormBody.Builder()
                 .add("email", email)
                 .add("password", password)
@@ -97,9 +100,7 @@ public class SignUp_Activity extends AppCompatActivity {
                         Toast.makeText(SignUp_Activity.this, "Failed Signup", Toast.LENGTH_SHORT).show();
                     }
                 });
-
             }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 //String x = String.valueOf(response.isSuccessful());
@@ -114,16 +115,68 @@ public class SignUp_Activity extends AppCompatActivity {
                     });
 
                     Gson gson = new Gson();
-                    threadMessage = gson.fromJson(response.body().string(), ThreadMessage.class);
+                    tokenInfo = gson.fromJson(response.body().string(), TokenInfo.class);
                     //Log.d("demo", threadMessage.toString());
-                    Intent intent = new Intent(SignUp_Activity.this, ActivityChatScreen.class);
-                    intent.putExtra(SIGNUP_CODE, threadMessage);
-                    startActivity(intent);
+
+                    loginUser();
                 } else{
                     firstName_edittext.post(new Runnable() {
                         @Override
                         public void run() {
                             Toast.makeText(SignUp_Activity.this, "SIGNUP FAILED", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    public void loginUser(){
+        RequestBody formBody = new FormBody.Builder()
+                .add("email", sEmail)
+                .add("password", sPassword)
+                .build();
+
+        Request request = new Request.Builder()
+                .url("http://ec2-54-164-74-55.compute-1.amazonaws.com/api/login")
+                .post(formBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                firstName_edittext.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(SignUp_Activity.this, "Failed Login", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                //
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()){
+                    //Toast.makeText(MainActivity.this, "Successful Login", Toast.LENGTH_SHORT).show();
+
+                    firstName_edittext.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(SignUp_Activity.this, "Successful Login", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    Gson gson = new Gson();
+                    tokenInfo = gson.fromJson(response.body().string(), TokenInfo.class);
+
+                    Intent intent = new Intent(SignUp_Activity.this, ActivityChatScreen.class);
+                    intent.putExtra(TOKEN_CODE, tokenInfo);
+                    startActivity(intent);
+                } else{
+                    firstName_edittext.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(SignUp_Activity.this, "Failed Login", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
