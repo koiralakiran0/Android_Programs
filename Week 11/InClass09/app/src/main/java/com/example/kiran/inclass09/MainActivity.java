@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button_signup;
 
     private FirebaseAuth mAuth;
-    FirebaseAuth.AuthStateListener authStateListener;
+    //private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
-
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-
-            }
-        };
-
 
             editText_email = (EditText) findViewById(R.id.editText_email);
             editText_password = (EditText) findViewById(R.id.editText_password);
@@ -63,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
             button_login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    loginUsers();
+                    //loginUsers();
+                    Intent intent = new Intent(MainActivity.this, CreateNewContact.class);
+                    startActivity(intent);
                 }
             });
 
@@ -74,37 +67,29 @@ public class MainActivity extends AppCompatActivity {
         */
     }
 
+
+
+    //After loggin in, goto the contacts activity
     private void loginUsers() {
         String email = editText_email.getText().toString();
         String password = editText_password.getText().toString();
         Log.d("demo", "I am here");
 
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                    Log.d("demo", "Im successful");
-                    // Sign in success, update UI with the signed-in user's information
-                    Toast.makeText(MainActivity.this, "Authentication Passed.", Toast.LENGTH_SHORT).show();
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    // If sign in fails, display a message to the user.
-                    //Log.d("demo", "signInWithCustomToken:failure");
-                    //Log.d("demo", "Im failure");
-                    //Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Task Successful", Toast.LENGTH_SHORT).show();
+
+                if (!task.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "NOT SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                } else {
+
                 }
+            }
         });
 
-    }
 
-    private boolean isConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-        if (networkInfo == null || !networkInfo.isConnected() ||
-                (networkInfo.getType() != ConnectivityManager.TYPE_WIFI
-                        && networkInfo.getType() != ConnectivityManager.TYPE_MOBILE)) {
-            return false;
-        }
-        return true;
     }
 
 }

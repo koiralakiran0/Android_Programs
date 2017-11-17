@@ -1,5 +1,6 @@
 package com.example.kiran.inclass09;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,17 +24,61 @@ public class SelectAvatar extends AppCompatActivity {
         imageView_female1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent();
+                i.putExtra(CreateNewContact.GET_IMAGE_TAG, view.getId());
+                setResult(RESULT_OK, i);
+                finish();
             }
         });
 
         imageView_female2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent();
+                i.putExtra(CreateNewContact.GET_IMAGE_TAG, view.getId());
+                setResult(RESULT_OK, i);
+                finish();
             }
         });
 
-        //imageView_female3.setOnClickListener();
+        imageView_female3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.putExtra(CreateNewContact.GET_IMAGE_TAG, view.getId());
+                setResult(RESULT_OK, i);
+                finish();
+            }
+        });
+
+        imageView_male1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.putExtra(CreateNewContact.GET_IMAGE_TAG, view.getId());
+                setResult(RESULT_OK, i);
+                finish();
+            }
+        });
+
+        imageView_male2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.putExtra(CreateNewContact.GET_IMAGE_TAG, view.getId());
+                setResult(RESULT_OK, i);
+                finish();
+            }
+        });
+
+        imageView_male3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.putExtra(CreateNewContact.GET_IMAGE_TAG, view.getId());
+                setResult(RESULT_OK, i);
+                finish();
+            }
+        });
     }
 }
