@@ -78,10 +78,7 @@ public class CreateNewContact extends AppCompatActivity {
                     Contact contact = new Contact(editText_Name.getText().toString(), editText_email.getText().toString(),
                             editText_phone.getText().toString(), department, avatar);
                     myRef.child("Contacts").push().setValue(contact);
-<<<<<<< HEAD
                     Toast.makeText(CreateNewContact.this, "New Contact Created", Toast.LENGTH_SHORT).show();
-=======
->>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
                     finish();
                 }else {
                     Toast.makeText(CreateNewContact.this, "Informations Not Valid!", Toast.LENGTH_SHORT).show();
@@ -128,8 +125,4 @@ public class CreateNewContact extends AppCompatActivity {
             }
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
