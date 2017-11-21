@@ -24,19 +24,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class ContactsActivity extends AppCompatActivity {
-
-
     private Button button_createNew;
     private Button button_logout;
     private ListView container;
 
-    private FirebaseAuth mAuth;
-    private FirebaseUser user;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
-
     ArrayList<Contact> contacts;
 
+    private FirebaseAuth mAuth;
+    FirebaseUser user;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +47,19 @@ public class ContactsActivity extends AppCompatActivity {
 
         contacts = new ArrayList<>();
 
+
+        /*
+        defaultvalues.add(new Contact("Kiran Koirala", "email@whatever.com", "asdfas", "asdfasdf", "fasdfasdf"));
+        defaultvalues.add(new Contact("kron vron", "email@whatever.com", "asdfas", "asdfasdf", "fasdfasdf"));
+        defaultvalues.add(new Contact("sron Koirala", "email@whatever.com", "asdfas", "asdfasdf", "fasdfasdf"));
+        defaultvalues.add(new Contact("don Koirala", "email@whatever.com", "asdfas", "asdfasdf", "fasdfasdf"));
+        defaultvalues.add(new Contact("flon vlon", "email@whatever.com", "asdfas", "asdfasdf", "fasdfasdf"));
+        */
+
         button_createNew = (Button) findViewById(R.id.button_createNewContact);
         button_logout = (Button) findViewById(R.id.button_Logout);
         container = (ListView) findViewById(R.id.listview_container);
+        fillContainer();
 
         //When Create New is started
         button_createNew.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +80,7 @@ public class ContactsActivity extends AppCompatActivity {
                 //delete authentication
                 mAuth.signOut();
                 //go to login screen
+                mAuth.signOut();
                 finish();
             }
         });
@@ -128,5 +136,10 @@ public class ContactsActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void fillContainer() {
+        //Fill the Listview
+
     }
 }

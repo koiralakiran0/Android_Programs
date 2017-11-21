@@ -19,10 +19,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+<<<<<<< HEAD
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+=======
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -35,7 +38,10 @@ public class SignupActivity extends AppCompatActivity {
     private Button buttonCancel;
 
     private FirebaseAuth mAuth;
+<<<<<<< HEAD
     FirebaseAuth.AuthStateListener authStateListener;
+=======
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         mAuth = FirebaseAuth.getInstance();
+<<<<<<< HEAD
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -50,6 +57,8 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         };
+=======
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
 
         editTextfName = (EditText) findViewById(R.id.editText_firstname);
         editTextlName = (EditText) findViewById(R.id.editText_lastName);
@@ -71,6 +80,7 @@ public class SignupActivity extends AppCompatActivity {
         buttonsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 String firstName = editTextfName.getText().toString();
                 String lastName = editTextlName.getText().toString();
                 String email = editTextlName.getText().toString();
@@ -107,9 +117,51 @@ public class SignupActivity extends AppCompatActivity {
                             });
                 }
 
+=======
+                if (editTextchoosePassword.toString().equals(editTextrepeatPassword.toString())){
+                    Toast.makeText(SignupActivity.this, "Password don't match", Toast.LENGTH_SHORT).show();
+                }
+                else if (validateEmail(editTextemail.toString())){
+                    Toast.makeText(SignupActivity.this, "Email not valid", Toast.LENGTH_SHORT).show();
+                }else {
+                    signupUser();
+                }
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
             }
         });
 
     }
 
+<<<<<<< HEAD
+=======
+    //EMAIL VALIDATION
+    boolean validateEmail(String email){
+        if (email == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        }
+    }
+
+    //User Signup
+    //After creating a user, go to the contacts activity
+    private void signupUser() {
+        String email = editTextemail.getText().toString();
+        String password = editTextchoosePassword.getText().toString();
+
+
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Toast.makeText(SignupActivity.this, "INSIDE HERE", Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()){
+                    Toast.makeText(SignupActivity.this, "SIGNUP SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(SignupActivity.this, "UNSUCCESSFUL", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+    }
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
 }

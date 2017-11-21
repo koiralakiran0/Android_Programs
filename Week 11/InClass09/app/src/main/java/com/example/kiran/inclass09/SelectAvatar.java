@@ -50,8 +50,33 @@ public class SelectAvatar extends AppCompatActivity {
                 finish();
             }
         });
+<<<<<<< HEAD
 
         imageView_male1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.putExtra(CreateNewContact.GET_IMAGE_TAG, view.getId());
+                setResult(RESULT_OK, i);
+                finish();
+            }
+        });
+
+        imageView_male2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.putExtra(CreateNewContact.GET_IMAGE_TAG, view.getId());
+                setResult(RESULT_OK, i);
+                finish();
+            }
+        });
+
+        imageView_male3.setOnClickListener(new View.OnClickListener() {
+=======
+
+        imageView_male1.setOnClickListener(new View.OnClickListener() {
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
             @Override
             public void onClick(View view) {
                 Intent i = new Intent();
@@ -80,7 +105,5 @@ public class SelectAvatar extends AppCompatActivity {
                 finish();
             }
         });
-
-        //imageView_female3.setOnClickListener();
     }
 }

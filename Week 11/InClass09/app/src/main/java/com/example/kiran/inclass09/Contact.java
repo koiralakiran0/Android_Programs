@@ -7,7 +7,11 @@ import java.io.Serializable;
  */
 
 public class Contact implements Serializable{
+<<<<<<< HEAD
     String name, email, phone, department, image, uid;
+=======
+    String name, email, phone, department, image;
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
 
     public Contact(String name, String email, String phone, String department, String image){
         this.name = name;
@@ -18,6 +22,7 @@ public class Contact implements Serializable{
     }
 
 
+<<<<<<< HEAD
     public String getName() {
         return name;
     }
@@ -38,6 +43,8 @@ public class Contact implements Serializable{
         return image;
     }
 
+=======
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
     @Override
     public String toString() {
         return "Contact{" +
@@ -48,4 +55,8 @@ public class Contact implements Serializable{
                 ", image='" + image + '\'' +
                 '}';
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c

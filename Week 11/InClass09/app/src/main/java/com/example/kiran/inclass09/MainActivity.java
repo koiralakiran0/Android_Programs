@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("user");
     private FirebaseAuth mAuth;
+<<<<<<< HEAD
     FirebaseAuth.AuthStateListener mAuthListener;
 
     /*
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     email: jkljkljkljkefgh@gmail.com   pass: wertghj
     email: werqwerrtghju@gmail.com   pass: eyertet
      */
+=======
+    //private FirebaseAuth.AuthStateListener mAuthListener;
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+<<<<<<< HEAD
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -84,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
         editText_password = (EditText) findViewById(R.id.editText_password);
         button_login = (Button) findViewById(R.id.button_login);
         button_signup = (Button) findViewById(R.id.button_signup);
+=======
+            editText_email = (EditText) findViewById(R.id.editText_email);
+            editText_password = (EditText) findViewById(R.id.editText_password);
+            button_login = (Button) findViewById(R.id.button_login);
+            button_signup = (Button) findViewById(R.id.button_signup);
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
 
         button_signup.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,23 +107,34 @@ public class MainActivity extends AppCompatActivity {
             button_login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+<<<<<<< HEAD
                     if (!editText_email.getText().toString().equals("") && !editText_password.getText().toString().equals("")) {
                         loginUsers();
                     }else {
                         Toast.makeText(MainActivity.this, "Enter email and password", Toast.LENGTH_SHORT).show();
                     }
+=======
+                    //loginUsers();
+                    Intent intent = new Intent(MainActivity.this, CreateNewContact.class);
+                    startActivity(intent);
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
                 }
             });
     }
 
+
+
+    //After loggin in, goto the contacts activity
     private void loginUsers() {
         String email = editText_email.getText().toString();
         String password = editText_password.getText().toString();
         Log.d("demo", "I am here");
 
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+<<<<<<< HEAD
                 if (task.isSuccessful()){
                     Log.d("demo", "I am successful");
                     Toast.makeText(MainActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
@@ -122,10 +144,19 @@ public class MainActivity extends AppCompatActivity {
                     editText_password.setText("");
                 }else {
                     Toast.makeText(MainActivity.this, "LOG IN FAILED", Toast.LENGTH_SHORT).show();
+=======
+                Toast.makeText(MainActivity.this, "Task Successful", Toast.LENGTH_SHORT).show();
+
+                if (!task.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "NOT SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                } else {
+
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
                 }
             }
         });
 
+<<<<<<< HEAD
     }
 
 
@@ -152,13 +183,9 @@ public class MainActivity extends AppCompatActivity {
     private boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+=======
+>>>>>>> a7fea9a5951b59e1fd340e8d5c70db62a170921c
 
-        if (networkInfo == null || !networkInfo.isConnected() ||
-                (networkInfo.getType() != ConnectivityManager.TYPE_WIFI
-                        && networkInfo.getType() != ConnectivityManager.TYPE_MOBILE)) {
-            return false;
-        }
-        return true;
     }
 
 }
