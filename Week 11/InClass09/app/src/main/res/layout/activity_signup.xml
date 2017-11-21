@@ -38,7 +38,7 @@
         android:layout_below="@+id/editText_lastName"
         android:ems="10"
         android:hint="@string/hint_Email"
-        android:inputType="textPersonName" />
+        android:inputType="textEmailSubject" />
 
     <EditText
         android:id="@+id/editText_password"
