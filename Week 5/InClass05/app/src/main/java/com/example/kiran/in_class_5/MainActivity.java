@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,11 +24,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView textView_Display;
-    ImageView imageView_picRetrieved;
+    ImageView imageView_picRetrieved, imageView_previous, imageView_next;
+    Button button_go;
+    ArrayList<String> urls;
+    int currentPhoto = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,14 +42,17 @@ public class MainActivity extends AppCompatActivity {
 
         textView_Display = (TextView) findViewById(R.id.textView_Display);
         imageView_picRetrieved = (ImageView) findViewById(R.id.imageView_display);
-        ImageView imageView_previous = (ImageView) findViewById(R.id.imageView_previous);
-        ImageView imageView_next = (ImageView) findViewById(R.id.imageView_next);
-        Button button_go = (Button) findViewById(R.id.button_Go);
+        imageView_previous = (ImageView) findViewById(R.id.imageView_previous);
+        imageView_next = (ImageView) findViewById(R.id.imageView_next);
+        button_go = (Button) findViewById(R.id.button_Go);
+        urls = new ArrayList<>();
+
+        imageView_previous.setVisibility(View.INVISIBLE);
+        imageView_next.setVisibility(View.INVISIBLE);
 
         button_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (isConnected()) {
                     Toast.makeText(MainActivity.this, "Internet Connection", Toast.LENGTH_SHORT).show();
                     new GetKeywords().execute("http://dev.theappsdr.com/apis/photos/keywords.php");
@@ -57,14 +66,26 @@ public class MainActivity extends AppCompatActivity {
         imageView_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (currentPhoto == 0){
+                    currentPhoto = urls.size() -1;
+                } else {
+                    currentPhoto--;
+                }
 
+                new GetImages(imageView_picRetrieved).execute(urls.get(currentPhoto));
             }
         });
 
         imageView_previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (currentPhoto == urls.size()-1){
+                    currentPhoto = 0;
+                } else {
+                    currentPhoto++;
+                }
 
+                new GetImages(imageView_picRetrieved).execute(urls.get(currentPhoto));
             }
         });
     }
@@ -80,7 +101,13 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             textView_Display.setText(toAlertDialog[i]);
-                            new GetImages(imageView_picRetrieved).execute("http://dev.theappsdr.com/apis/photos/index.php");
+
+                            urls = new ArrayList<>();
+                            currentPhoto = 0;
+
+                            new GetLinksAsync().execute("http://dev.theappsdr.com/apis/photos/index.php");
+
+
                         }
                     });
 
@@ -127,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
     private boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -139,4 +167,49 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    private class GetLinksAsync extends AsyncTask<String, Void, ArrayList<String>>{
+        @Override
+        protected void onPostExecute(ArrayList<String> strings) {
+            super.onPostExecute(strings);
+            if (urls.size() >= 1){
+                new GetImages(imageView_picRetrieved).execute(urls.get(0));
+                if (urls.size() > 1){
+                    imageView_next.setVisibility(View.VISIBLE);
+                    imageView_previous.setVisibility(View.VISIBLE);
+                }
+            } else {
+                Toast.makeText(MainActivity.this, "NO URLS", Toast.LENGTH_SHORT).show();
+                imageView_picRetrieved.setImageDrawable(null);
+                imageView_previous.setVisibility(View.INVISIBLE);
+                imageView_next.setVisibility(View.INVISIBLE);
+            }
+        }
+
+        @Override
+        protected ArrayList<String> doInBackground(String... strings) {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            try {
+                String stringUrl = strings[0] + "?" + "keyword=" + textView_Display.getText().toString();
+
+                URL url = new URL(stringUrl);
+
+
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                String line = "";
+                while((line = reader.readLine()) != null){
+                    urls.add(line);
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return urls;
+
+        }
+    }
 }
