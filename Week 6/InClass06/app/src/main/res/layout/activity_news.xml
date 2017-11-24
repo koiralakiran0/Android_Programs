@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.koira.inclass06.MainActivity">
+    tools:context="com.example.koira.inclass06.NewsActivity">
 
     <ListView
-        android:id="@+id/listview_container"
+        android:id="@+id/articles_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true" />
 </RelativeLayout>
