@@ -47,6 +47,7 @@ public class ContactListAdapter extends ArrayAdapter<Contact> {
         viewHolder.dept.setText(contact.getDepartment());
         viewHolder.phone.setText(contact.getPhone());
         //viewHolder.image.setImageBitmap();
+        viewHolder.picture
         return convertView;
     }
 

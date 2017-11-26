@@ -65,5 +65,7 @@ public class Contacts extends Fragment {
 
     public interface OnFragmentInteractionListener {
        public void gotoCreateNew();
+
+        void setIconId(int avatar_m_1);
     }
 }

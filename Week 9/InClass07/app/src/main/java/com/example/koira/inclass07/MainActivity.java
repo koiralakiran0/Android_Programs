@@ -21,10 +21,6 @@ public class MainActivity extends AppCompatActivity implements Contacts.OnFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        manyContacts.add(new Contact("Kiran", "kkoirala@uncc.edu", "9804222868", "CS", ""));
-        manyContacts.add(new Contact("asdf", "asdf@uncc.asdf", "asdfasdf", "CS", ""));
-        manyContacts.add(new Contact("asdfasdfasdf", "asdf@asdfas.edu", "ssdfdsfsaf", "CS", ""));
-
         getFragmentManager().beginTransaction()
                 .add(R.id.Container, new Contacts(), "contact_tag")
                 .commit();
